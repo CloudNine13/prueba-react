@@ -13,8 +13,8 @@ function router() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<Home />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>

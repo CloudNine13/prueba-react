@@ -1,0 +1,43 @@
+@import '../../utils/variables.scss';
+
+.error {
+    margin-top: 30px;
+    height: fit-content;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 800;
+    color: $alert_color;
+    border: 1.5px solid $alert_border;
+    background-color: $alert_background;
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-moz-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-o-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@-ms-keyframes fadeIn {
+    0% {opacity: 0;}
+
+    100% {opacity: 1;}
+}

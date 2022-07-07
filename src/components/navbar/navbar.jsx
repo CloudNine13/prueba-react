@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import './navbar.scss'
-import { logoutUser } from '../../actions/authAction'
+import { logoutUser } from '../../actions/authActions'
 
 const Navbar = ({ auth }) => {
   const token = auth && auth.token

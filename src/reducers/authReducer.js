@@ -1,5 +1,4 @@
 import {
-  LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
@@ -32,14 +31,6 @@ const authReducer = (state = initialState, action = {}) => {
         ...state,
         token: action.res,
         error: null,
-        loading: false
-      }
-
-    case LOGIN_FAILURE:
-      return {
-        ...state,
-        token: null,
-        error: action.error,
         loading: false
       }
 

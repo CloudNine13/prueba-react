@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginUser } from '../../actions/authAction'
+import { loginUser } from '../../actions/authActions'
 import { USER_TOKEN } from '../../utils/constants'
+import Error from '../error/error'
 import './login.scss'
 
 const Login = () => {
@@ -22,7 +23,7 @@ const Login = () => {
 
   // Redirecting if logged
   useEffect(() => {
-    if (localStorage.getItem(USER_TOKEN)) navigate('/home')
+    if (localStorage.getItem(USER_TOKEN)) navigate('/')
   }, [])
 
   return (
@@ -42,6 +43,7 @@ const Login = () => {
           placeholder='Password'
         />
         <button type='submit'>Login</button>
+        <Error />
       </form>
       <a href='./fsdfs'>Test 404 page</a>
     </div>

@@ -17,7 +17,7 @@ export default async function loginAPI(user) {
       password: user.password
     })
   })
-  if (!response.ok) throw new Error("Token wasn't returned")
+  if (!response.ok) throw new Error('Email address is not correct')
   const res = await response.json()
   return res.token
 }
