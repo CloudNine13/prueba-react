@@ -1,0 +1,38 @@
+@import '../../utils/variables.scss';
+
+.navbar {
+    position: relative;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: $grey_darker;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    
+    img {
+        height: 50%;
+        margin-left: 1%;
+    }
+
+    button {
+        margin-left: auto;
+        margin-right: 1%;
+        height: 50%;
+        border: 0.16em solid $white;
+        border-radius: 2em;
+        background-color: $grey_darker;
+        box-sizing: border-box;
+        text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        font-weight: 300;
+        color: $white;
+        text-shadow: 0 0.04em 0.04em $grey;
+        text-align: center;
+        transition: all 0.2s;
+    
+        &:hover {
+            color: $black;
+            background-color: $white;
+        }
+    }
+}

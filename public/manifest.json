@@ -1,0 +1,9 @@
+{
+  "short_name": "Sopra Steria prueba",
+  "name": "Sopra Steria prueba técnica React",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
