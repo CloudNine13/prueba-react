@@ -8,7 +8,7 @@ import { LOGIN_REQUEST, LOGOUT_REQUEST } from '../utils/constants'
  */
 export const loginUser = (user, navigate) => ({
   type: LOGIN_REQUEST,
-  payload: user,
+  user,
   navigate
 })
 

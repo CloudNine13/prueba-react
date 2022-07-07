@@ -8,7 +8,7 @@ const Error = ({ error }) => {
   const dispatch = useDispatch()
   const message = error && error.text
 
-  setTimeout(() => dispatch(releaseError()), 5000)
+  setTimeout(() => dispatch(releaseError()), 8000)
 
   if (message) {
     return <div className='error'>{message}</div>

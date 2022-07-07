@@ -1,0 +1,16 @@
+@import '../../utils/variables.scss';
+
+.item {
+    width: auto;
+    background-color: $grey_darker;
+    border-radius: 6px;
+    margin: 0px 20% 3%;
+    padding: 15px 20px 15px;
+    text-align: center;
+    font-size: 22px;
+    flex-grow: 0.015;
+
+    &:active {
+        flex-grow: 0.000001;
+    }
+}

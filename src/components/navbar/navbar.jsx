@@ -23,7 +23,7 @@ const Navbar = ({ auth }) => {
       />
 
       {token && (
-        <button type='button' onClick={handleLogout}>
+        <button type='button' onClick={() => handleLogout()}>
           Logout
         </button>
       )}

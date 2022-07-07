@@ -1,23 +1,24 @@
+import fetchBuilder from '../utils/requestBuilder'
+
 const endpoint = 'https://reqres.in/api/login'
 
 export default async function loginAPI(user) {
-  const response = await fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      mode: 'cors',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'DELETE, POST, GET, OPTIONS',
-      'Access-Control-Allow-Headers':
-        'Content-Type, Authorization, X-Requested-With'
-    },
-    body: JSON.stringify({
-      // eve.holt@reqres.in
+  const fetchOptions = fetchBuilder(
+    'POST',
+    JSON.stringify({
       email: user.email,
       password: user.password
     })
-  })
-  if (!response.ok) throw new Error('Email address is not correct')
-  const res = await response.json()
-  return res.token
+  )
+
+  let error = new Error('Email address is not correct')
+  let response = null
+  try {
+    response = await fetch(endpoint, fetchOptions)
+  } catch {
+    error = new Error('No internet connection')
+  }
+  if (!response || !response.ok) throw error
+  const result = await response.json()
+  return result.token
 }

@@ -1,5 +1,7 @@
+@import '../../utils/variables.scss';
+
 .home {
-    position: fixed;
+    position: absolute;
     top: 60px;
     bottom: 0px;
     right: 0px;
@@ -9,4 +11,42 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pages_container {
+    position: absolute;
+    font-size: 40px;
+    font-weight: 900;
+    width:fit-content;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 1%;
+    display: flex;
+    flex-direction: row;
+
+    .pages {
+        color: $red;
+    }
+
+    button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .left_arrow, .right_arrow {
+        margin-top: 5px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .right_arrow {
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+    }
 }

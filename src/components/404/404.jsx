@@ -6,7 +6,7 @@ const Error404 = () => (
     <div className='title_404'>404</div>
     <div className='subtitle_404'>This page does not exist :(</div>
     <div className='button_wrapper_404'>
-      <a href='/home'>Go to homepage</a>
+      <a href='/'>Go to homepage</a>
     </div>
   </div>
 )

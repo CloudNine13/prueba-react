@@ -27,6 +27,8 @@ module.exports = {
     /* Sometimes it cause rare situations producing import error
      * https://stackoverflow.com/a/44724874/11472256
      * */
-    'import/no-named-as-default': 0
+    'import/no-named-as-default': 0,
+    // API has snake case variables so ESLint doesn't like it
+    camelcase: 'off'
   }
 }

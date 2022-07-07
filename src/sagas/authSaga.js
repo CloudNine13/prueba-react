@@ -14,10 +14,10 @@ import { setError } from '../actions/errorActions'
  */
 function* loginUser(action) {
   try {
-    const res = yield loginAPI(action.payload)
-    localStorage.setItem(USER_TOKEN, res)
+    const result = yield loginAPI(action.user)
+    localStorage.setItem(USER_TOKEN, result)
     action.navigate('/')
-    yield put({ type: LOGIN_SUCCESS, res })
+    yield put({ type: LOGIN_SUCCESS, result })
   } catch (e) {
     const err = e.message
     yield put(setError({ type: SET_ERROR, err }))
