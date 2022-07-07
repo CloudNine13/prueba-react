@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../../actions/authAction'
 import { USER_TOKEN } from '../../utils/constants'
+import './login.scss'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -26,8 +27,8 @@ const Login = () => {
 
   return (
     <div className='login'>
-      <form className='login__form' onSubmit={submitLogin}>
-        <h1>Login</h1>
+      <form className='login_form' onSubmit={submitLogin}>
+        <h1>Login to your account</h1>
         <input
           type='email'
           onChange={(event) => setUser({ ...user, email: event.target.value })}
@@ -40,8 +41,9 @@ const Login = () => {
           }
           placeholder='Password'
         />
-        <button type='submit'>sub</button>
+        <button type='submit'>Login</button>
       </form>
+      <a href='./fsdfs'>Test 404 page</a>
     </div>
   )
 }
