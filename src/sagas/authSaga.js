@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import loginAPI from '../api/login'
 import {
+  LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
@@ -20,6 +21,7 @@ function* loginUser(action) {
     yield put({ type: LOGIN_SUCCESS, result })
   } catch (e) {
     const err = e.message
+    yield put({ type: LOGIN_FAILURE })
     yield put(setError({ type: SET_ERROR, err }))
   }
 }

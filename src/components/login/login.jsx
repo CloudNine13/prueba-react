@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { loginUser } from '../../actions/authActions'
 import { USER_TOKEN } from '../../utils/constants'
 import Error from '../error/error'
-import './login.scss'
+import './login.sass'
+import Loading from '../loading/loading'
 
-const Login = () => {
-  const dispatch = useDispatch()
+const Login = ({ loginUserDispatch }) => {
   const navigate = useNavigate()
 
   const [user, setUser] = useState({
@@ -18,7 +19,7 @@ const Login = () => {
   // Perfoming login user
   const submitLogin = (event) => {
     event.preventDefault()
-    dispatch(loginUser(user, navigate))
+    loginUserDispatch(user, navigate)
   }
 
   // Redirecting if logged
@@ -28,6 +29,7 @@ const Login = () => {
 
   return (
     <div className='login'>
+      <Loading />
       <form className='login_form' onSubmit={submitLogin}>
         <h1>Login to your account</h1>
         <input
@@ -50,4 +52,18 @@ const Login = () => {
   )
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => ({
+  loginUserDispatch: (user, navigate) => {
+    dispatch(loginUser(user, navigate))
+  }
+})
+
+Login.propTypes = {
+  loginUserDispatch: PropTypes.func
+}
+
+Login.defaultProps = {
+  loginUserDispatch: null
+}
+
+export default connect(null, mapDispatchToProps)(Login)

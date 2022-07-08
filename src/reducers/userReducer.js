@@ -3,7 +3,7 @@ import { USER_LIST_REQUEST, USER_LIST_SUCCESS } from '../utils/constants'
 const initialState = {
   users: null,
   pages: 1,
-  loading: false
+  loadingUsers: false
 }
 
 const userReducer = (state = initialState, action = {}) => {
@@ -11,14 +11,14 @@ const userReducer = (state = initialState, action = {}) => {
     case USER_LIST_REQUEST:
       return {
         ...state,
-        loading: true
+        loadingUsers: true
       }
 
     case USER_LIST_SUCCESS:
       return {
         users: action.result.data,
         pages: action.result.total_pages,
-        loading: false
+        loadingUsers: false
       }
 
     default:

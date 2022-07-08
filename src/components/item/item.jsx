@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './item.scss'
+import { useNavigate } from 'react-router-dom'
 
 const Item = (props) => {
+  const navigate = useNavigate()
   const { user } = props
   const { first_name, last_name, email } = user
   return (
@@ -10,7 +12,13 @@ const Item = (props) => {
       className='item'
       type='button'
       onClick={() => {
-        console.log('plug')
+        navigate(
+          {
+            pathname: '/user',
+            search: `?id=${user.id}`
+          },
+          { state: { user } }
+        )
       }}
     >
       <div>

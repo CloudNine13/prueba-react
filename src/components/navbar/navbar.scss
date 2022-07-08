@@ -22,9 +22,11 @@
         border-radius: 2em;
         background-color: $grey_darker;
         box-sizing: border-box;
+        text-transform: uppercase;
         text-decoration: none;
         font-family: "Roboto", sans-serif;
-        font-weight: 300;
+        font-weight: 700;
+        font-size: 15px;
         color: $white;
         text-shadow: 0 0.04em 0.04em $grey;
         text-align: center;
@@ -33,6 +35,10 @@
         &:hover {
             color: $black;
             background-color: $white;
+        }
+
+        &:active {
+            margin-top: 0.3%;
         }
     }
 }

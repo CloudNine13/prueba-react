@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import getUsers from '../../actions/userActions'
 import { USER_TOKEN } from '../../utils/constants'
 import './home.scss'
 import Item from '../item/item'
+import Loading from '../loading/loading'
 
-const Home = ({ users }) => {
+const Home = ({ users, getUsersDispatch }) => {
   const usersArray = users && users.users
   const maxPages = users && users.pages
   const [currentPage, setCurrentPage] = useState(1)
   const img =
     'https://www.xkelet.com/static/djangocms_admin_style/fonts/src/chevron-left.svg'
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const pagesButtons = {
     left: null,
@@ -46,12 +46,13 @@ const Home = ({ users }) => {
 
   useEffect(() => {
     if (!localStorage.getItem(USER_TOKEN)) navigate('/login')
-    dispatch(getUsers(currentPage))
+    getUsersDispatch(currentPage)
   }, [currentPage])
 
   return (
     <>
       <div className='home'>
+        <Loading />
         {usersArray &&
           usersArray.map((user) => <Item user={user} key={user.id} />)}
       </div>
@@ -66,6 +67,7 @@ const Home = ({ users }) => {
   )
 }
 
+// Defining property types for states (users, pages, getUsersDispatch function)
 Home.propTypes = {
   users: PropTypes.shape({
     users: PropTypes.arrayOf(
@@ -74,13 +76,21 @@ Home.propTypes = {
       )
     ),
     pages: PropTypes.number
-  })
+  }),
+  getUsersDispatch: PropTypes.func
 }
 
+// Defining default value for properties
 Home.defaultProps = {
-  users: null
+  users: null,
+  getUsersDispatch: null
 }
 
 const mapStateToProps = ({ users }) => ({ users })
+const mapDispatchToProps = (dispatch) => ({
+  getUsersDispatch: (currentPage) => {
+    dispatch(getUsers(currentPage))
+  }
+})
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

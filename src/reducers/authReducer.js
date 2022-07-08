@@ -2,13 +2,13 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
+  LOGIN_FAILURE,
   USER_TOKEN
 } from '../utils/constants'
 
 // Initial state of authentification
 const initialState = {
   token: localStorage.getItem(USER_TOKEN),
-  error: null,
   loading: false
 }
 
@@ -23,18 +23,24 @@ const authReducer = (state = initialState, action = {}) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        loading: true
+        loadingAuth: true
       }
 
     case LOGIN_SUCCESS:
       return {
         token: action.result,
-        error: null,
+        loadingAuth: false
+      }
+
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        token: null,
         loading: false
       }
 
     case LOGOUT_REQUEST:
-      return { token: null, error: null, loading: false }
+      return { token: null, loading: false }
 
     default:
       return state

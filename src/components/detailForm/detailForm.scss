@@ -1,0 +1,20 @@
+.detail_form {
+    display: flex;
+    flex-direction: column;
+    .input_wrapper {
+            display: flex;
+            margin-top: 45px;
+            margin-bottom: 19px;
+            gap: 5px
+        }
+    
+        input {
+            width: 100px;
+        }
+    
+        .email {
+            width: 200px;
+            align-self: center;
+            margin-bottom: 10px;
+        }
+}

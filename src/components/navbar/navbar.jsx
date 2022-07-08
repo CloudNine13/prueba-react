@@ -1,18 +1,17 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import './navbar.scss'
 import { logoutUser } from '../../actions/authActions'
 
-const Navbar = ({ auth }) => {
+const Navbar = ({ auth, logoutUserDispatch }) => {
   const token = auth && auth.token
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   // Perfoming logout user
   function handleLogout() {
-    dispatch(logoutUser(navigate))
+    logoutUserDispatch(navigate)
   }
 
   return (
@@ -35,17 +34,24 @@ const Navbar = ({ auth }) => {
 Navbar.propTypes = {
   auth: PropTypes.shape({
     token: PropTypes.string
-  })
+  }),
+  logoutUserDispatch: PropTypes.func
 }
 
 // Setting default prop
 Navbar.defaultProps = {
   auth: {
     token: null
-  }
+  },
+  logoutUserDispatch: null
 }
 
 // Mapping states from authReducer to navbar
 const mapStateToProps = ({ auth }) => ({ auth })
+const mapDispatchToProps = (dispatch) => ({
+  logoutUserDispatch: (navigate) => {
+    dispatch(logoutUser(navigate))
+  }
+})
 
-export default connect(mapStateToProps)(Navbar)
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

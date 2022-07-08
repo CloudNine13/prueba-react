@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Login from '../components/login/login'
+import Detail from '../components/detail/detail'
 import Home from '../components/home/home'
 import store from '../store/configureStore'
 import Navbar from '../components/navbar/navbar'
@@ -15,6 +16,7 @@ function router() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />
+          <Route path='/user' element={<Detail />} />
           <Route path='*' element={<Error404 />} />
         </Routes>
       </BrowserRouter>
