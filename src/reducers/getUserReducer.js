@@ -6,7 +6,7 @@ const initialState = {
   loadingUsers: false
 }
 
-const userReducer = (state = initialState, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_LIST_REQUEST:
       return {
@@ -25,5 +25,3 @@ const userReducer = (state = initialState, action = {}) => {
       return state
   }
 }
-
-export default userReducer

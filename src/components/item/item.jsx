@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import './item.scss'
 import { useNavigate } from 'react-router-dom'
 
-const Item = (props) => {
+const Item = ({ user }) => {
   const navigate = useNavigate()
-  const { user } = props
   const { first_name, last_name, email } = user
   return (
     <button

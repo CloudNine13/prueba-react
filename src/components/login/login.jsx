@@ -17,8 +17,7 @@ const Login = ({ loginUserDispatch }) => {
   })
 
   // Perfoming login user
-  const submitLogin = (event) => {
-    event.preventDefault()
+  const submitLogin = () => {
     loginUserDispatch(user, navigate)
   }
 
@@ -30,7 +29,13 @@ const Login = ({ loginUserDispatch }) => {
   return (
     <div className='login'>
       <Loading />
-      <form className='login_form' onSubmit={submitLogin}>
+      <form
+        className='login_form'
+        onSubmit={(event) => {
+          event.preventDefault()
+          submitLogin()
+        }}
+      >
         <h1>Login to your account</h1>
         <input
           type='email'

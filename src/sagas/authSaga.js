@@ -20,9 +20,9 @@ function* loginUser(action) {
     action.navigate('/')
     yield put({ type: LOGIN_SUCCESS, result })
   } catch (e) {
-    const err = e.message
+    const { message } = e
     yield put({ type: LOGIN_FAILURE })
-    yield put(setError({ type: SET_ERROR, err }))
+    yield put(setError({ type: SET_ERROR, message }))
   }
 }
 

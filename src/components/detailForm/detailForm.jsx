@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { connect, useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import './detailForm.scss'
 import Error from '../error/error'
+import Loading from '../loading/loading'
 import { SET_ERROR } from '../../utils/constants'
 import { setError } from '../../actions/errorActions'
+import { editUser } from '../../actions/userActions'
 
 /**
- * Hook used to create edit form for user's detail form
- * @param {Function} editDispatch destructed dispatch function of hook properties which are set with mapping connection
+ * Component used to create edit form for user's detail form
+ * @param {Function} editDispatch destructed dispatch function of component properties which are set with mapping connection
  * @returns {JSX.Element} edit action form as JSX element
  */
-const DetailForm = ({ editDispatch }) => {
+const DetailForm = ({ utils, editDispatch }) => {
   const dispatch = useDispatch()
+  const { id, setIsEditable } = utils
   const [userDetail, setUserDetail] = useState({
     first_name: '',
     last_name: '',
-    email: ''
+    email: '',
+    id
   })
 
   /**
@@ -38,7 +42,9 @@ const DetailForm = ({ editDispatch }) => {
       )
       return
     }
-    editDispatch(userDetail)
+
+    // Dispatching API action
+    editDispatch(userDetail, setIsEditable)
   }
 
   /**
@@ -75,33 +81,40 @@ const DetailForm = ({ editDispatch }) => {
       {inputBuilder('email', 'Email')}
       <button type='submit'>submit</button>
       <Error />
+      <Loading />
     </form>
   )
 }
 
 /**
- *
- * @param {Function} dispatch
- * @returns {Object} returns dispatcher object which is anonymous function
+ * Function used to map edit dispatcher to properties of component
+ * @param {Function} dispatch used to dispatch userDetail put API call
+ * @returns {Object} returns dispatcher object with key editDispatch which value is anonymous function
  */
 const mapDispatchToProps = (dispatch) => ({
   /**
    * Object with key editDispatch with anonymous function as value.
    * This function calls redux dispatch sending details of user to CRUD (update) action
-   * @param {*} userDetail is the user data parameter passed to put api request
+   * @param {Object} userDetail is the user data parameter passed to put api request
    */
-  editDispatch: (userDetail) => {
-    dispatch(userDetail)
+  editDispatch: (userDetail, setIsEditable) => {
+    dispatch(editUser(userDetail, setIsEditable))
   }
 })
 
-// Setting type of hook properties
 DetailForm.propTypes = {
+  utils: PropTypes.shape({
+    id: PropTypes.string,
+    setIsEditable: PropTypes.func
+  }),
   editDispatch: PropTypes.func
 }
 
-// Setting default value to hook properties
 DetailForm.defaultProps = {
+  utils: PropTypes.shape({
+    id: '',
+    setIsEditable: null
+  }),
   editDispatch: null
 }
 

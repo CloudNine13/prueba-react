@@ -1,8 +1,12 @@
-import { USER_LIST_REQUEST } from '../utils/constants'
+import { USER_LIST_REQUEST, EDIT_REQUEST } from '../utils/constants'
 
-const getUsers = (page) => ({
+export const getUsers = (page) => ({
   type: USER_LIST_REQUEST,
   page
 })
 
-export default getUsers
+export const editUser = (user, setIsEditable) => ({
+  type: EDIT_REQUEST,
+  user,
+  setIsEditable
+})

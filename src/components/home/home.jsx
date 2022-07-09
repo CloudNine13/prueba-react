@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import getUsers from '../../actions/userActions'
+import { getUsers } from '../../actions/userActions'
 import { USER_TOKEN } from '../../utils/constants'
 import './home.scss'
 import Item from '../item/item'
@@ -67,6 +67,13 @@ const Home = ({ users, getUsersDispatch }) => {
   )
 }
 
+const mapStateToProps = ({ users }) => ({ users })
+const mapDispatchToProps = (dispatch) => ({
+  getUsersDispatch: (currentPage) => {
+    dispatch(getUsers(currentPage))
+  }
+})
+
 // Defining property types for states (users, pages, getUsersDispatch function)
 Home.propTypes = {
   users: PropTypes.shape({
@@ -85,12 +92,5 @@ Home.defaultProps = {
   users: null,
   getUsersDispatch: null
 }
-
-const mapStateToProps = ({ users }) => ({ users })
-const mapDispatchToProps = (dispatch) => ({
-  getUsersDispatch: (currentPage) => {
-    dispatch(getUsers(currentPage))
-  }
-})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

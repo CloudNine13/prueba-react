@@ -4,7 +4,7 @@
  * @param {Object} body used to set body for request
  * @return {Object} prepared options to make request
  */
-export default (method, body) => ({
+export default (method, body = null) => ({
   method,
   headers: {
     mode: 'cors',

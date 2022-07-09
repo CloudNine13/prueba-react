@@ -30,6 +30,14 @@ const Navbar = ({ auth, logoutUserDispatch }) => {
   )
 }
 
+// Mapping states from authReducer to navbar
+const mapStateToProps = ({ auth }) => ({ auth })
+const mapDispatchToProps = (dispatch) => ({
+  logoutUserDispatch: (navigate) => {
+    dispatch(logoutUser(navigate))
+  }
+})
+
 // Setting props type
 Navbar.propTypes = {
   auth: PropTypes.shape({
@@ -45,13 +53,5 @@ Navbar.defaultProps = {
   },
   logoutUserDispatch: null
 }
-
-// Mapping states from authReducer to navbar
-const mapStateToProps = ({ auth }) => ({ auth })
-const mapDispatchToProps = (dispatch) => ({
-  logoutUserDispatch: (navigate) => {
-    dispatch(logoutUser(navigate))
-  }
-})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

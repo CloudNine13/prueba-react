@@ -1,7 +1,9 @@
 import { put, takeLatest } from 'redux-saga/effects'
 import { setError } from '../actions/errorActions'
-import getUsersAPI from '../api/user'
+import { getUsersAPI, editUserAPI } from '../api/user'
 import {
+  EDIT_REQUEST,
+  EDIT_SUCCESS,
   SET_ERROR,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS
@@ -12,13 +14,28 @@ function* getUserList(action) {
     const result = yield getUsersAPI(action.page)
     yield put({ type: USER_LIST_SUCCESS, result })
   } catch (e) {
-    const err = e.message
-    yield put(setError({ type: SET_ERROR, err }))
+    const { message } = e
+    yield put(setError({ type: SET_ERROR, message }))
   }
 }
 
-function* watcherUserList() {
+function* editUser(action) {
+  try {
+    const { user } = action
+    const result = yield editUserAPI(user)
+    // Setting editted user in detail component
+    yield put({ type: EDIT_SUCCESS, result })
+    action.setIsEditable((editable) => !editable)
+  } catch (e) {
+    const { message } = e
+    yield put(setError({ type: SET_ERROR, message }))
+  }
+}
+
+export function* watcherUserList() {
   yield takeLatest(USER_LIST_REQUEST, getUserList)
 }
 
-export default watcherUserList
+export function* watcherUserEdit() {
+  yield takeLatest(EDIT_REQUEST, editUser)
+}
