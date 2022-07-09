@@ -1,4 +1,9 @@
-import { EDIT_REQUEST, EDIT_SUCCESS, RELEASE_EDIT } from '../utils/constants'
+import {
+  EDIT_REQUEST,
+  EDIT_SUCCESS,
+  EDIT_FAILURE,
+  RELEASE_EDIT
+} from '../utils/constants'
 
 const initialState = {
   first_name: '',
@@ -17,12 +22,19 @@ export default (state = initialState, action = {}) => {
       }
 
     case EDIT_SUCCESS: {
-      const res = action.result
+      const ar = action.result
       return {
-        first_name: res.first_name,
-        last_name: res.last_name,
-        email: res.email,
-        updated_at: res.updatedAt,
+        first_name: ar.first_name,
+        last_name: ar.last_name,
+        email: ar.email,
+        updated_at: ar.updatedAt,
+        loadingEdit: false
+      }
+    }
+
+    case EDIT_FAILURE: {
+      return {
+        ...state,
         loadingEdit: false
       }
     }

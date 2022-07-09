@@ -23,3 +23,10 @@ export async function editUserAPI(user) {
   const result = await response.json()
   return result
 }
+
+export async function deleteUserAPI(id) {
+  const fetchOptions = fetchBuilder('DELETE', null)
+  const endpoint = `https://reqres.in/api/users/${id}`
+  const response = await fetch(endpoint, fetchOptions)
+  if (!response.ok) throw new Error('User deletion returned error')
+}

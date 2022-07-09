@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 import { USER_TOKEN } from '../../utils/constants'
 import DetailForm from '../detailForm/detailForm'
 import './detail.scss'
-import { releaseEdit } from '../../actions/userActions'
+import { deleteUser, releaseEdit } from '../../actions/crudActions'
+import Loading from '../loading/loading'
 
 /**
  * Component used to create user detail's card
  * @returns {JSX.Element} card view as JSX element
  */
-const Detail = ({ edit, releaseEditDispatch }) => {
+const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
   const { first_name, last_name, email, updated_at } = edit
   const [isEditable, setIsEditable] = useState(false)
   const { user } = useLocation().state || {}
@@ -19,12 +20,14 @@ const Detail = ({ edit, releaseEditDispatch }) => {
   const [searchParams] = useSearchParams()
   const id = searchParams.get('id')
   const detailUtils = { setIsEditable, id }
+
   // Restricting access without correct link or token or if user is empty (= if URL is called manually)
   useEffect(() => {
     if (!id) navigate(-1)
     if (!localStorage.getItem(USER_TOKEN)) navigate('/login')
     if (!user) navigate('/')
 
+    // Forgetting edit changes to not have them in other user cards
     return () => releaseEditDispatch()
   }, [])
 
@@ -44,8 +47,11 @@ const Detail = ({ edit, releaseEditDispatch }) => {
     </button>
   )
 
+  const deleteUserAction = () => deleteUserDispatch(user.id, navigate)
+
   return (
     <div className='detail'>
+      <Loading />
       <div className='detail_card'>
         <div className='data_wrapper'>
           <img src={user?.avatar} alt='user avatar' />
@@ -69,7 +75,7 @@ const Detail = ({ edit, releaseEditDispatch }) => {
         </div>
         <div className='button_wrapper'>
           {buttonBuilder('delete', () => {
-            console.log('Delete triggered')
+            deleteUserAction()
           })}
           {buttonBuilder('edit', () => {
             setIsEditable(!isEditable)
@@ -85,7 +91,8 @@ const Detail = ({ edit, releaseEditDispatch }) => {
 
 const mapStateToProps = ({ edit }) => ({ edit })
 const mapDispatcherToProps = (dispatch) => ({
-  releaseEditDispatch: () => dispatch(releaseEdit())
+  releaseEditDispatch: () => dispatch(releaseEdit()),
+  deleteUserDispatch: (id, navigate) => dispatch(deleteUser(id, navigate))
 })
 
 // Setting props type
@@ -97,7 +104,8 @@ Detail.propTypes = {
     updated_at: PropTypes.string,
     loadingEdit: PropTypes.bool
   }),
-  releaseEditDispatch: PropTypes.func
+  releaseEditDispatch: PropTypes.func,
+  deleteUserDispatch: PropTypes.func
 }
 
 // Setting default prop
@@ -109,7 +117,8 @@ Detail.defaultProps = {
     updated_at: '',
     loadingEdit: false
   },
-  releaseEditDispatch: null
+  releaseEditDispatch: null,
+  deleteUserDispatch: null
 }
 
 export default connect(mapStateToProps, mapDispatcherToProps)(Detail)

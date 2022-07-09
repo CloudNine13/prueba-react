@@ -3,14 +3,11 @@ import fetchBuilder from '../utils/requestBuilder'
 const endpoint = 'https://reqres.in/api/login'
 
 export default async function loginAPI(user) {
-  const fetchOptions = fetchBuilder(
-    'POST',
-    JSON.stringify({
-      email: user.email,
-      password: user.password
-    })
-  )
-
+  const body = JSON.stringify({
+    email: user.email,
+    password: user.password
+  })
+  const fetchOptions = fetchBuilder('POST', body)
   let error = new Error('Email address is not correct')
   let response = null
   try {

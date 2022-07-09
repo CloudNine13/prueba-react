@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects'
 import { watcherLogin, watcherLogout } from './authSaga'
-import { watcherUserList, watcherUserEdit } from './userSaga'
+import { watcherUserList, watcherUserEdit, watcherUserDelete } from './crudSaga'
 
 // Configurating saga's watchers
 function* rootSaga() {
@@ -8,7 +8,8 @@ function* rootSaga() {
     watcherLogin(),
     watcherLogout(),
     watcherUserList(),
-    watcherUserEdit()
+    watcherUserEdit(),
+    watcherUserDelete()
   ])
 }
 

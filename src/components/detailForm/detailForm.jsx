@@ -3,9 +3,8 @@ import { connect, useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import './detailForm.scss'
 import Error from '../error/error'
-import Loading from '../loading/loading'
 import { setError } from '../../actions/errorActions'
-import { editUser } from '../../actions/userActions'
+import { editUser } from '../../actions/crudActions'
 
 /**
  * Component used to create edit form for user's detail form
@@ -75,7 +74,6 @@ const DetailForm = ({ utils, editDispatch }) => {
       {inputBuilder('email', 'Email')}
       <button type='submit'>submit</button>
       <Error />
-      <Loading />
     </form>
   )
 }
