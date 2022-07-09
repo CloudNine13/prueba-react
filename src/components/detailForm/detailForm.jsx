@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import './detailForm.scss'
 import Error from '../error/error'
 import Loading from '../loading/loading'
-import { SET_ERROR } from '../../utils/constants'
 import { setError } from '../../actions/errorActions'
 import { editUser } from '../../actions/userActions'
 
@@ -34,12 +33,7 @@ const DetailForm = ({ utils, editDispatch }) => {
     En el caso contratio rehacer esta parte no será el problema. Lo haré enseguida.
      */
     if (!userDetail.first_name || !userDetail.last_name || !userDetail.email) {
-      dispatch(
-        setError({
-          type: SET_ERROR,
-          err: 'You should fill all of the camps'
-        })
-      )
+      dispatch(setError('You should fill all of the camps'))
       return
     }
 
@@ -97,9 +91,8 @@ const mapDispatchToProps = (dispatch) => ({
    * This function calls redux dispatch sending details of user to CRUD (update) action
    * @param {Object} userDetail is the user data parameter passed to put api request
    */
-  editDispatch: (userDetail, setIsEditable) => {
+  editDispatch: (userDetail, setIsEditable) =>
     dispatch(editUser(userDetail, setIsEditable))
-  }
 })
 
 DetailForm.propTypes = {

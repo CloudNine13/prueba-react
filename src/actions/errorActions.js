@@ -1,8 +1,8 @@
-import { RELEASE_ERROR } from '../utils/constants'
+import { RELEASE_ERROR, SET_ERROR } from '../utils/constants'
 
 export const setError = (error) => ({
-  type: error.type,
-  payload: error.err
+  type: SET_ERROR,
+  payload: error
 })
 
 export const releaseError = () => ({

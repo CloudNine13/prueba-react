@@ -7,8 +7,9 @@ import { USER_TOKEN } from '../../utils/constants'
 import Error from '../error/error'
 import './login.sass'
 import Loading from '../loading/loading'
+import { setError } from '../../actions/errorActions'
 
-const Login = ({ loginUserDispatch }) => {
+const Login = ({ loginUserDispatch, errorDispatch }) => {
   const navigate = useNavigate()
 
   const [user, setUser] = useState({
@@ -18,6 +19,7 @@ const Login = ({ loginUserDispatch }) => {
 
   // Perfoming login user
   const submitLogin = () => {
+    if (!user.password) errorDispatch('Password cannot be empty')
     loginUserDispatch(user, navigate)
   }
 
@@ -58,17 +60,18 @@ const Login = ({ loginUserDispatch }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  loginUserDispatch: (user, navigate) => {
-    dispatch(loginUser(user, navigate))
-  }
+  loginUserDispatch: (user, navigate) => dispatch(loginUser(user, navigate)),
+  errorDispatch: (message) => dispatch(setError(message))
 })
 
 Login.propTypes = {
-  loginUserDispatch: PropTypes.func
+  loginUserDispatch: PropTypes.func,
+  errorDispatch: PropTypes.func
 }
 
 Login.defaultProps = {
-  loginUserDispatch: null
+  loginUserDispatch: null,
+  errorDispatch: null
 }
 
 export default connect(null, mapDispatchToProps)(Login)

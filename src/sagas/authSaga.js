@@ -5,7 +5,6 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT_REQUEST,
-  SET_ERROR,
   USER_TOKEN
 } from '../utils/constants'
 import { setError } from '../actions/errorActions'
@@ -22,7 +21,7 @@ function* loginUser(action) {
   } catch (e) {
     const { message } = e
     yield put({ type: LOGIN_FAILURE })
-    yield put(setError({ type: SET_ERROR, message }))
+    yield put(setError(message))
   }
 }
 

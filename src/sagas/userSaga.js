@@ -4,7 +4,6 @@ import { getUsersAPI, editUserAPI } from '../api/user'
 import {
   EDIT_REQUEST,
   EDIT_SUCCESS,
-  SET_ERROR,
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS
 } from '../utils/constants'
@@ -15,7 +14,7 @@ function* getUserList(action) {
     yield put({ type: USER_LIST_SUCCESS, result })
   } catch (e) {
     const { message } = e
-    yield put(setError({ type: SET_ERROR, message }))
+    yield put(setError(message))
   }
 }
 
@@ -28,7 +27,7 @@ function* editUser(action) {
     action.setIsEditable((editable) => !editable)
   } catch (e) {
     const { message } = e
-    yield put(setError({ type: SET_ERROR, message }))
+    yield put(setError(message))
   }
 }
 

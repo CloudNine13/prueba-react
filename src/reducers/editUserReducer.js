@@ -1,11 +1,11 @@
-import { EDIT_REQUEST, EDIT_SUCCESS } from '../utils/constants'
+import { EDIT_REQUEST, EDIT_SUCCESS, RELEASE_EDIT } from '../utils/constants'
 
 const initialState = {
   first_name: '',
   last_name: '',
   email: '',
   updated_at: '',
-  loadingEdit: true
+  loadingEdit: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -26,6 +26,9 @@ export default (state = initialState, action = {}) => {
         loadingEdit: false
       }
     }
+
+    case RELEASE_EDIT:
+      return initialState
 
     default:
       return state

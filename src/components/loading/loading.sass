@@ -1,0 +1,29 @@
+@import '../../utils/variables'
+    
+.loading
+    position: fixed
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background-color: $black_minimum_opacity
+    z-index: 1000
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .dual_ring
+        display: block
+        width: 64px
+        height: 64px
+        margin: 8px
+        border-radius: 50%
+        border: 15px solid $pink
+        border-color: $pink transparent $pink transparent
+        animation: dual_ring 1s linear infinite
+
+    @keyframes dual_ring
+        0%
+            transform: rotate(0deg)
+        100%
+            transform: rotate(360deg)

@@ -5,12 +5,13 @@ import PropTypes from 'prop-types'
 import { USER_TOKEN } from '../../utils/constants'
 import DetailForm from '../detailForm/detailForm'
 import './detail.scss'
+import { releaseEdit } from '../../actions/userActions'
 
 /**
  * Component used to create user detail's card
  * @returns {JSX.Element} card view as JSX element
  */
-const Detail = ({ edit }) => {
+const Detail = ({ edit, releaseEditDispatch }) => {
   const { first_name, last_name, email, updated_at } = edit
   const [isEditable, setIsEditable] = useState(false)
   const { user } = useLocation().state || {}
@@ -23,6 +24,8 @@ const Detail = ({ edit }) => {
     if (!id) navigate(-1)
     if (!localStorage.getItem(USER_TOKEN)) navigate('/login')
     if (!user) navigate('/')
+
+    return () => releaseEditDispatch()
   }, [])
 
   /**
@@ -45,18 +48,18 @@ const Detail = ({ edit }) => {
     <div className='detail'>
       <div className='detail_card'>
         <div className='data_wrapper'>
-          <img src={user.avatar} alt='user avatar' />
+          <img src={user?.avatar} alt='user avatar' />
           {isEditable ? (
             // Detail form component used to dispatch CRUD API call (put)
             <DetailForm utils={detailUtils} />
           ) : (
             <>
               <h1>
-                {first_name || user.first_name} {last_name || user.last_name}
+                {first_name || user?.first_name} {last_name || user?.last_name}
               </h1>
               <div className='email_wrapper'>
                 <p>Email:</p>
-                {email || user.email}
+                {email || user?.email}
               </div>
               {updated_at ? (
                 <div className='updated'>updated at: {updated_at}</div>
@@ -81,6 +84,9 @@ const Detail = ({ edit }) => {
 }
 
 const mapStateToProps = ({ edit }) => ({ edit })
+const mapDispatcherToProps = (dispatch) => ({
+  releaseEditDispatch: () => dispatch(releaseEdit())
+})
 
 // Setting props type
 Detail.propTypes = {
@@ -90,18 +96,20 @@ Detail.propTypes = {
     email: PropTypes.string,
     updated_at: PropTypes.string,
     loadingEdit: PropTypes.bool
-  })
+  }),
+  releaseEditDispatch: PropTypes.func
 }
 
 // Setting default prop
 Detail.defaultProps = {
   edit: {
-    first_name: null,
-    last_name: null,
-    email: null,
-    updated_at: null,
+    first_name: '',
+    last_name: '',
+    email: '',
+    updated_at: '',
     loadingEdit: false
-  }
+  },
+  releaseEditDispatch: null
 }
 
-export default connect(mapStateToProps)(Detail)
+export default connect(mapStateToProps, mapDispatcherToProps)(Detail)
