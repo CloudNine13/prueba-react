@@ -13,6 +13,11 @@ import {
   USER_LIST_FAILURE
 } from '../utils/constants'
 
+/**
+ * Saga's generator method to execute get API call when watcherLogin is triggered
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} action used to pass page number to get request of API
+ */
 function* getUserList(action) {
   try {
     const result = yield getUsersAPI(action.page)
@@ -24,6 +29,10 @@ function* getUserList(action) {
   }
 }
 
+/**
+ * Saga's generator method to execute put API call when watcherLogin is triggered
+ * @param {Object} action used to pass user object to put request of API. Uses `setIsEditable()` to set edit form to false when succeeds
+ */
 function* editUser(action) {
   try {
     const result = yield editUserAPI(action.user)
@@ -37,6 +46,10 @@ function* editUser(action) {
   }
 }
 
+/**
+ * Saga's generator method to execute delete API call when watcherLogin is triggered
+ * @param {Object} action used to pass id  of user to delete request of API. Also navigates back when request succeeds
+ */
 function* deleteUser(action) {
   try {
     yield deleteUserAPI(action.id)
@@ -49,14 +62,23 @@ function* deleteUser(action) {
   }
 }
 
+/**
+ * Generator function used as get users action watcher
+ */
 export function* watcherUserList() {
   yield takeLatest(USER_LIST_REQUEST, getUserList)
 }
 
+/**
+ * Generator function used as edit user action watcher
+ */
 export function* watcherUserEdit() {
   yield takeLatest(EDIT_REQUEST, editUser)
 }
 
+/**
+ * Generator function used as delete user action watcher
+ */
 export function* watcherUserDelete() {
   yield takeLatest(DELETE_REQUEST, deleteUser)
 }

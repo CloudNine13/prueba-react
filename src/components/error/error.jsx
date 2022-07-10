@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import './error.scss'
+import './error.sass'
 import { releaseError } from '../../actions/errorActions'
 
 /**
  * Component which rises an error when triggered inside others JSX elements
- * @param {Object} _ destructed object of component params and dispatcher having error and releaseErrorDispatch values
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} error object which contains error message
+ * @param {Function} releaseErrorDispatch is the function used to set error's timeout
  * @returns {JSX.Element} JSX error element used inside other JSX Elements
  */
 const Error = ({ error, releaseErrorDispatch }) => {
@@ -36,8 +38,8 @@ const mapStateToProps = ({ error }) => ({ error })
  */
 const mapDispatchToProps = (dispatch) => ({
   /**
-   * Object with key releaseErrorDispatch with anonymous function as value.
-   * This function calls redux dispatch sending release error action to hide error's JSX element
+   * Function used to dispatch release edit action which deletes edit changes for other cards
+   * @returns {Function} dispatch function executing release error action
    */
   releaseErrorDispatch: () => {
     dispatch(releaseError())
@@ -60,5 +62,4 @@ Error.defaultProps = {
   releaseErrorDispatch: null
 }
 
-// Connecting dispatcher as props to DetailForm function
 export default connect(mapStateToProps, mapDispatchToProps)(Error)

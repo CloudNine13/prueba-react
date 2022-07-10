@@ -14,7 +14,8 @@ const initialState = {
 
 /**
  * The method used to set state of authentification to different conditions according to type of actions
- * @param {Object} state is the dictionary of key-value type containing auth values such as token, error, etc.
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} state is the object of key-value type containing auth values such as token, error, etc.
  * @param {Object} action is the object used to get methods or types of dispatched actions performed in components
  * @returns state of authentification according to last type of action performed
  */
@@ -39,6 +40,7 @@ const authReducer = (state = initialState, action = {}) => {
         loading: false
       }
 
+    // Deleting token in case of logout
     case LOGOUT_REQUEST:
       return { token: null, loading: false }
 

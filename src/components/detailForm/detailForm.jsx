@@ -7,7 +7,9 @@ import { setError } from '../../actions/errorActions'
 import { editUser } from '../../actions/crudActions'
 
 /**
- * Component used to create edit form for user's detail form
+ * Component used to represent edit form
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} utils object of id string and useState function
  * @param {Function} editDispatch destructed dispatch function of component properties which are set with mapping connection
  * @returns {JSX.Element} edit action form as JSX element
  */
@@ -87,7 +89,9 @@ const mapDispatchToProps = (dispatch) => ({
   /**
    * Object with key editDispatch with anonymous function as value.
    * This function calls redux dispatch sending details of user to CRUD (update) action
-   * @param {Object} userDetail is the user data parameter passed to put api request
+   * @param {Object} userDetail is the object containing info about user
+   * @param {Function} setIsEditable is the function used to switch edit state to reveal edit form
+   * @returns {Function} returns dispatch function executing edit action
    */
   editDispatch: (userDetail, setIsEditable) =>
     dispatch(editUser(userDetail, setIsEditable))

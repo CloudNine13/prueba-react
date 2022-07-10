@@ -4,12 +4,13 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { USER_TOKEN } from '../../utils/constants'
 import DetailForm from '../detailForm/detailForm'
-import './detail.scss'
 import { deleteUser, releaseEdit } from '../../actions/crudActions'
 import Loading from '../loading/loading'
+import './detail.sass'
 
 /**
  * Component used to create user detail's card
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
  * @returns {JSX.Element} card view as JSX element
  */
 const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
@@ -47,6 +48,10 @@ const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
     </button>
   )
 
+  /**
+   * Function used on click of delete button
+   * @returns {Function} on click executes delete dispatcher
+   */
   const deleteUserAction = () => deleteUserDispatch(user.id, navigate)
 
   return (
@@ -75,9 +80,11 @@ const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
         </div>
         <div className='button_wrapper'>
           {buttonBuilder('delete', () => {
+            // Dispatching delete action
             deleteUserAction()
           })}
           {buttonBuilder('edit', () => {
+            // Activating edit view (detailForm component)
             setIsEditable(!isEditable)
           })}
         </div>
@@ -89,9 +96,29 @@ const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
   )
 }
 
+/**
+ * function used to map edit redux state to props
+ * @param {Object} edit destructed state of edit passed as property to component
+ * @returns {Object} edit state prop
+ */
 const mapStateToProps = ({ edit }) => ({ edit })
+/**
+ * Function used to map edit redux dispatchers to props
+ * @param {Function} dispatch used to dispatch an action
+ * @returns {Object} objects with dispatch functions inside
+ */
 const mapDispatcherToProps = (dispatch) => ({
+  /**
+   * Function used to dispatch release edit action which deletes edit changes for other cards
+   * @returns {Function} dispatch function executing action
+   */
   releaseEditDispatch: () => dispatch(releaseEdit()),
+  /**
+   * Function used to dispatch delete user action which deletes a user
+   * @param {string} id used to pass user id to action
+   * @param {Function} navigate is useNavigate function used to go back when user is deleted
+   * @returns {Function} dispatch function executing delete action
+   */
   deleteUserDispatch: (id, navigate) => dispatch(deleteUser(id, navigate))
 })
 

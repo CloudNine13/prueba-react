@@ -2,7 +2,9 @@ import { all } from 'redux-saga/effects'
 import { watcherLogin, watcherLogout } from './authSaga'
 import { watcherUserList, watcherUserEdit, watcherUserDelete } from './crudSaga'
 
-// Configurating saga's watchers
+/**
+ * Generator function of Redix Saga used to set watchers
+ */
 function* rootSaga() {
   yield all([
     watcherLogin(),

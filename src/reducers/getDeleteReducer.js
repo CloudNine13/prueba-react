@@ -17,6 +17,14 @@ const initialState = {
   deleted_id: null
 }
 
+/**
+ * The method used to set state of get or delete action to different conditions according to type of actions.
+ * These actions are merged because delete actions affect the state of get user actions (i.e. in home component)
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} state is the object of key-value type containing get/delete actions values such as user object, number of pages, id of deleted user etc.
+ * @param {Object} action is the object used to get values of dispatched actions performed in components
+ * @returns state of get/delete actions according to last type of action performed
+ */
 export default (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_LIST_REQUEST:
@@ -27,6 +35,7 @@ export default (state = initialState, action = {}) => {
 
     case USER_LIST_SUCCESS: {
       const ar = action.result
+      // If user is deleted
       if (state.deleted_id) {
         return {
           ...state,
@@ -36,6 +45,7 @@ export default (state = initialState, action = {}) => {
           loadingUsers: false
         }
       }
+      // If user is not deleted
       return {
         ...state,
         users: ar.data,

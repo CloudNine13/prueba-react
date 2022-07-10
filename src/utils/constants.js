@@ -1,3 +1,8 @@
+/**
+ * File containing constants used inside Redux actions
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ */
+
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_SUCCESS'

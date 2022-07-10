@@ -3,10 +3,13 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from '../reducers/rootReducer'
 import rootSaga from '../sagas/rootSaga'
 
+// Using Saga middleware
 const sagaMiddleware = createSagaMiddleware()
 
-// Configurating redux store and saga middleware
-const store = configureStore({
+/**
+ * Redux function used to configurate and set vault of values, saga's middleware
+ */
+export default configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -15,5 +18,3 @@ const store = configureStore({
     }).concat(sagaMiddleware)
 })
 sagaMiddleware.run(rootSaga)
-
-export default store

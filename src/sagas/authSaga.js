@@ -1,5 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
-import loginAPI from '../api/login'
+import { loginAPI } from '../api/crud'
 import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
@@ -8,9 +8,12 @@ import {
   USER_TOKEN
 } from '../utils/constants'
 import { setError } from '../actions/errorActions'
+
 /**
- * Method to execute when watcherLogin is triggered
- * @param {Object} action used to trigger navigate function
+ * Saga's generator method to execute post call to API when watcherLogin is triggered
+ * Sets user token to local storage
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
+ * @param {Object} action used to pass user object to login request to API and trigger navigate function
  */
 function* loginUser(action) {
   try {
@@ -26,20 +29,25 @@ function* loginUser(action) {
 }
 
 /**
- * [Method to execute when watcherLogout is triggered]
- * @param {NavigateFunction} action [used to trigger navigate function]
+ * Saga's generator method to execute when watcherLogout is triggered.
+ * Deletes user token from local storage
+ * @param {Object} action used to trigger navigate function
  */
 function logoutUser(action) {
   localStorage.removeItem(USER_TOKEN)
   action.navigate('/login')
 }
 
-// Login watcher
+/**
+ * Generator function used as login action watcher
+ */
 export function* watcherLogin() {
   yield takeLatest(LOGIN_REQUEST, loginUser)
 }
 
-// Logout watcher
+/**
+ * Generator function used as logout action watcher
+ */
 export function* watcherLogout() {
   yield takeLatest(LOGOUT_REQUEST, logoutUser)
 }

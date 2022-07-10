@@ -1,5 +1,6 @@
 /**
  * Function used to build fetch options
+ * @author Igor Dzichkovskii <igordzich@gmail.com>
  * @param {string} method used to set request method
  * @param {Object} body used to set body for request
  * @return {Object} prepared options to make request
