@@ -2,6 +2,24 @@
 
 Esto es el proyecto `Prueba React` que hice para el equipo de React. Este proyecto se ha desarrollado con JavaScript, framework React, middleware Saga. Para el diseño se han usado las tecnologías SASS, SCSS, Styled-Components.
 
+## Contenido
+- [Info General](#info-general)
+  * [Instalación](#instalación)
+  * [Uso](#uso)
+  * [Tecnologías](#tecnologías)
+  * [Explicación breve](#explicación-breve)
+  * [Info Adicional](#info-adicional)
+    + [1. Uso de React](#1-uso-de-react)
+    + [2. Uso de Redux](#2-uso-de-redux)
+    + [3. Navegacion](#3-navegación)
+    + [4. Maquetación](#4-maquetación)
+    + [5. Formato de código](#5-formato-de-código)
+    + [6. Asincronia (CRUD)](#6-asincronia-(crud))
+    + [7. Documentacion](#7-documentación)
+  * [Requisitos opcionales](#requisitos-opcionales)
+  * [Más Info Adicional](#más-info-adicional)
+    + [Componentes](#componentes)
+
 ## Instalación
 
 Para instalar este proyecto es necesario descargar el entorno de tiempo de ejecución de JavaScript [Node.js](https://nodejs.org/es/download/).
@@ -92,7 +110,7 @@ El proyecto se empieza con el componente `Login` (salvo el componente `Router`).
 
 - Se utilizó la tecnología Redux con su middleware Saga.
 
-### 3. Navegacion
+### 3. Navegación
 
 Navegación entre componentes se realiza por react-router v6.
 
@@ -114,7 +132,7 @@ Navegación entre componentes se realiza por react-router v6.
 - Cada petición a la API es asíncrona. Cada dispatch de la petición a la API es asíncrono (gracias al uso de Saga).
 - Las partes de código que pueden causar errores tienen bloques try-catch. Si no lo tienen se usan peticiones FAILURE en funciones generadoras que meten errores en la pantalla.
 
-### 7. Documentacion
+### 7. Documentación
 
 A parte de este archivo el código está documentado.
 
