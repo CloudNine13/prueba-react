@@ -21,12 +21,20 @@ export const Title = styled.div`
   font-size: 6em;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.red_404};
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    font-size: 3em;
+  }
 `
 
 export const Subtitle = styled.div`
   font-size: 40px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.blue_404};
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    font-size: 1.5em;
+  }
 `
 
 export const ButtonWrapper = styled.div`
@@ -47,5 +55,14 @@ export const A = styled.a`
     background-color: ${({ theme }) => theme.colors.red_404};
     color: white;
     transition: all 0.2s ease-in-out;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    padding: 10px;
+
+    &:active {
+      background-color: ${({ theme }) => theme.colors.red_404};
+      color: white;
+    }
   }
 `

@@ -63,13 +63,14 @@ const DetailForm = ({ utils, editDispatch }) => {
 
   return (
     <form
+      data-testid='df'
       className='detail_form'
       onSubmit={(event) => {
         event.preventDefault()
         submitEditDetail()
       }}
     >
-      <div className='input_wrapper'>
+      <div className='input_wrapper' data-testid='iw'>
         {inputBuilder('first_name', 'First Name')}
         {inputBuilder('last_name', 'Last Name')}
       </div>

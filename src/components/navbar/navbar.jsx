@@ -26,14 +26,15 @@ const Navbar = ({ auth, logoutUserDispatch }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Nav>
+      <Nav data-testid='n'>
         <Img
+          data-testid='i'
           src='https://upload.wikimedia.org/wikipedia/commons/0/02/Sopra_Steria_logo.svg'
           alt='Sopra Steria img'
         />
 
         {token && (
-          <Button type='button' onClick={() => handleLogout()}>
+          <Button data-testid='b' type='button' onClick={() => handleLogout()}>
             Logout
           </Button>
         )}

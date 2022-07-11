@@ -52,33 +52,35 @@ const Detail = ({ edit, releaseEditDispatch, deleteUserDispatch }) => {
    * Function used on click of delete button
    * @returns {Function} on click executes delete dispatcher
    */
-  const deleteUserAction = () => deleteUserDispatch(user.id, navigate)
+  const deleteUserAction = () => deleteUserDispatch(Number(id), navigate)
 
   return (
-    <div className='detail'>
+    <div className='detail' data-testid='d'>
       <Loading />
-      <div className='detail_card'>
-        <div className='data_wrapper'>
+      <div className='detail_card' data-testid='dc'>
+        <div className='data_wrapper' data-testid='dw'>
           <img src={user?.avatar} alt='user avatar' />
           {isEditable ? (
-            // Detail form component used to dispatch CRUD API call (put)
+            // Detail form component (child) used to dispatch CRUD API call (put)
             <DetailForm utils={detailUtils} />
           ) : (
             <>
-              <h1>
+              <h1 data-testid='h1'>
                 {first_name || user?.first_name} {last_name || user?.last_name}
               </h1>
-              <div className='email_wrapper'>
-                <p>Email:</p>
+              <div className='email_wrapper' data-testid='ew'>
+                <p data-testid='p'>Email:</p>
                 {email || user?.email}
               </div>
               {updated_at ? (
-                <div className='updated'>updated at: {updated_at}</div>
+                <div className='updated' data-testid='u'>
+                  updated at: {updated_at}
+                </div>
               ) : null}
             </>
           )}
         </div>
-        <div className='button_wrapper'>
+        <div className='button_wrapper' data-testid='bw'>
           {buttonBuilder('delete', () => {
             // Dispatching delete action
             deleteUserAction()

@@ -34,6 +34,7 @@ const Home = ({ getDelete, getUsersDispatch, releaseDeleteDispatch }) => {
   if (currentPage === 1) {
     pagesButtons.right = (
       <button
+        data-testid='rb'
         type='button'
         onClick={() => {
           setCurrentPage(currentPage + 1)
@@ -46,6 +47,7 @@ const Home = ({ getDelete, getUsersDispatch, releaseDeleteDispatch }) => {
   } else if (currentPage === maxPages) {
     pagesButtons.left = (
       <button
+        data-testid='lb'
         type='button'
         onClick={() => {
           setCurrentPage(currentPage - 1)
@@ -64,15 +66,15 @@ const Home = ({ getDelete, getUsersDispatch, releaseDeleteDispatch }) => {
 
   return (
     <>
-      <div className='home'>
+      <div className='home' data-testid='h'>
         <Loading />
         {usersArray &&
           // Using Item component for each user in list
           usersArray.map((user) => <Item user={user} key={user.id} />)}
       </div>
-      <div className='pages_container'>
+      <div className='pages_container' data-testid='pc'>
         {pagesButtons.left}
-        <div className='pages'>
+        <div className='pages' data-testid='p'>
           {currentPage}/{maxPages}
         </div>
         {pagesButtons.right}

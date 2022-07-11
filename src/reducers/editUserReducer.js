@@ -9,6 +9,7 @@ import {
 const initialState = {
   first_name: '',
   last_name: '',
+  id: '',
   email: '',
   updated_at: '',
   loadingEdit: false
@@ -34,6 +35,7 @@ export default (state = initialState, action = {}) => {
       return {
         first_name: ar.first_name,
         last_name: ar.last_name,
+        id: '',
         email: ar.email,
         updated_at: ar.updatedAt,
         loadingEdit: false

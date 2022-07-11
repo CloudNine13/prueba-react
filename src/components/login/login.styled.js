@@ -24,12 +24,21 @@ export const LoginForm = styled.form`
   padding: 5%;
   text-align: center;
   box-shadow: 0 0 10px ${({ theme }) => theme.colors.grey_darkest};
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    padding: 5%;
+    top: 10%;
+  }
 `
 
 export const Header1 = styled.h1`
   margin: 0 0 5%;
   line-height: 1;
   color: ${({ theme }) => theme.colors.red};
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    margin: 0 0 15%;
+  }
 `
 export const Input = styled.input`
   outline: none;
@@ -50,6 +59,11 @@ export const Input = styled.input`
   &:focus {
     color: #333;
     border: 3px solid ${({ theme }) => theme.colors.purple};
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    margin: 0 0 30px;
+    font-size: 25px;
   }
 `
 
@@ -98,6 +112,10 @@ export const ButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 15px;
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    gap: 30px;
+  }
 `
 
 export const A = styled.a`
@@ -106,4 +124,8 @@ export const A = styled.a`
   font-weight: 900;
   font-size: 25px;
   color: ${({ theme }) => theme.colors.red};
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    bottom: 7%;
+  }
 `

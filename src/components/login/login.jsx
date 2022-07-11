@@ -45,7 +45,10 @@ const Login = ({ loginUserDispatch, errorDispatch }) => {
 
   // Perfoming login user
   const submitLogin = () => {
-    if (!user.password) errorDispatch('Password cannot be empty')
+    if (!user.password) {
+      errorDispatch('Password cannot be empty')
+      return
+    }
     loginUserDispatch(user, navigate)
   }
 
@@ -56,16 +59,18 @@ const Login = ({ loginUserDispatch, errorDispatch }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LoginContainer background={background}>
+      <LoginContainer background={background} data-testid='lc'>
         <Loading />
         <LoginForm
+          data-testid='lf'
           onSubmit={(event) => {
             event.preventDefault()
             submitLogin()
           }}
         >
-          <Header1>Login to your account</Header1>
+          <Header1 data-testid='h1'>Login to your account</Header1>
           <Input
+            data-testid='i1'
             type='email'
             onChange={(event) =>
               setUser({ ...user, email: event.target.value })
@@ -73,18 +78,22 @@ const Login = ({ loginUserDispatch, errorDispatch }) => {
             placeholder='Email'
           />
           <Input
+            data-testid='i2'
             type='password'
             onChange={(event) =>
               setUser({ ...user, password: event.target.value })
             }
             placeholder='Password'
           />
-          <Button type='submit'>Login</Button>
+          <Button type='submit' data-testid='sub'>
+            Login
+          </Button>
           <Error />
         </LoginForm>
-        <ButtonWrapper>
-          <Label>Background:</Label>
+        <ButtonWrapper data-testid='bw'>
+          <Label data-testid='la'>Background:</Label>
           <BackgroundButton
+            data-testid='bb1'
             type='button'
             onClick={() => {
               setBackground(warmBack)
@@ -93,6 +102,7 @@ const Login = ({ loginUserDispatch, errorDispatch }) => {
             warm
           </BackgroundButton>
           <BackgroundButton
+            data-testid='bb2'
             type='button'
             onClick={() => {
               setBackground(coolBack)
@@ -101,7 +111,9 @@ const Login = ({ loginUserDispatch, errorDispatch }) => {
             cool
           </BackgroundButton>
         </ButtonWrapper>
-        <A href='./fsdfs'>Test 404 page</A>
+        <A href='./fsdfs' data-testid='a'>
+          Test 404 page
+        </A>
       </LoginContainer>
     </ThemeProvider>
   )

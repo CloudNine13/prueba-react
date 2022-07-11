@@ -19,8 +19,8 @@ const Loading = ({ auth, getDelete, edit }) => {
 
   if (loadingAuth || loadingUsers || loadingEdit || loadingDelete) {
     returnValue = (
-      <div className='loading'>
-        <div className='dual_ring' />
+      <div className='loading' data-testid='l'>
+        <div className='dual_ring' data-testid='dl' />
       </div>
     )
   }

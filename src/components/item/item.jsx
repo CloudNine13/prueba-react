@@ -16,6 +16,7 @@ const Item = ({ user }) => {
     <button
       className='item'
       type='button'
+      data-testid='b'
       onClick={() => {
         navigate(
           {
@@ -26,12 +27,12 @@ const Item = ({ user }) => {
         )
       }}
     >
-      <div>
-        First name: <strong>{first_name}</strong>, Last name:
-        <strong> {last_name}</strong>
+      <div data-testid='fn'>
+        First name: <strong data-testid='s1'>{first_name}</strong>, Last name:
+        <strong data-testid='s2'> {last_name}</strong>
       </div>
-      <div>
-        Email: <strong>{email}</strong>
+      <div data-testid='e'>
+        Email: <strong data-testid='s3'>{email}</strong>
       </div>
     </button>
   )

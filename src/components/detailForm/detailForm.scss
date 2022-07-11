@@ -10,9 +10,13 @@
             margin-bottom: 19px;
             gap: 5px
         }
+
     
     input {
         width: 100px;
+        @media only screen and (min-width: 480px) and (max-width: 768px) {
+            height: 25px;
+        }
     }
 
     .email {

@@ -9,16 +9,14 @@ import theme from '../../utils/theme'
  * @author Igor Dzichkovskii <igordzich@gmail.com>
  * @returns {JSX.Element} JSX element of 404 error
  */
-const Error404 = () => (
+export default () => (
   <ThemeProvider theme={theme}>
-    <Background>
+    <Background data-testid='bg'>
       <Title>404</Title>
       <Subtitle>This page does not exist :(</Subtitle>
-      <ButtonWrapper className='button_wrapper_404'>
+      <ButtonWrapper data-testid='bw'>
         <A href='/'>Go to homepage</A>
       </ButtonWrapper>
     </Background>
   </ThemeProvider>
 )
-
-export default Error404

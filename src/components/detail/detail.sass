@@ -23,11 +23,18 @@
         height: max-content
         box-shadow: 0 0 10px $grey_darker
 
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+            width: 300px
+            margin-top: 40px
+
         .data_wrapper
             display: flex
             flex-direction: column
             align-items: center
             margin: 40px
+
+            @media only screen and (mix-width: 480px) and (max-width: 768px)
+                margin: 30px
 
             .email_wrapper
                 display: flex
@@ -35,6 +42,9 @@
                 align-items: center
                 justify-content: center
                 gap: 10px
+
+                @media only screen and (min-width: 480px) and (max-width: 768px)
+                    gap: 5px
 
             p
                 align-self: flex-start
@@ -45,12 +55,18 @@
                 margin-top: 30px
                 font-size: 15px
 
+                @media only screen and (min-width: 480px) and (max-width: 768px)
+                    margin-top: 5px
+
         .button_wrapper
             margin-bottom: 40px
             display: flex
             flex-direction: row-reverse
             justify-content: center
             gap: 30%
+
+            @media only screen and (min-width: 480px) and (max-width: 768px)
+                gap: 17.5%
 
             @mixin button($color)
                 width: fit-content
@@ -64,6 +80,10 @@
                 font-weight: 600
                 font-size: 15px
                 cursor: pointer
+
+                @media only screen and (min-width: 480px) and (max-width: 768px)
+                    padding: 15px
+                    font-size: 20px
 
             .delete_button
                 @include button($delete)
@@ -91,6 +111,10 @@
         font-weight: 700
         font-size: 20px
         cursor: pointer
+
+        @media only screen and (min-width: 480px) and (max-width: 768px)
+            bottom: 4%
+            margin-top: 40px
 
         &:hover
             background-color: $white

@@ -13,6 +13,11 @@ export const Nav = styled.div`
 export const Img = styled.img`
   height: 50%;
   margin-left: 1%;
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    height: 40%;
+    margin-left: 3%;
+  }
 `
 
 export const Button = styled.button`
@@ -41,5 +46,11 @@ export const Button = styled.button`
 
   &:active {
     margin-top: 0.3%;
+  }
+
+  @media only screen and (min-width: 480px) and (max-width: 768px) {
+    margin-right: 3%;
+    font-size: 19px;
+    font-weight: 500;
   }
 `

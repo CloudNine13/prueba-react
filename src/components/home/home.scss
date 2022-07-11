@@ -43,10 +43,20 @@
         margin-top: 5px;
         width: 24px;
         height: 24px;
+
+        @media only screen and (min-width: 480px) and (max-width: 768px) {
+            width: 32px;
+            height: 32px;
+        }
     }
 
     .right_arrow {
         -webkit-transform: scaleX(-1);
         transform: scaleX(-1);
+    }
+
+    @media only screen and (min-width: 480px) and (max-width: 768px) {
+        font-size: 45px;
+        bottom: 2.5%;
     }
 }

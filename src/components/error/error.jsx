@@ -19,7 +19,11 @@ const Error = ({ error, releaseErrorDispatch }) => {
   useEffect(() => () => clearTimeout(timer), [message])
 
   if (message) {
-    return <div className='error'>{message}</div>
+    return (
+      <div className='error' data-testid='e'>
+        {message}
+      </div>
+    )
   }
   return null
 }

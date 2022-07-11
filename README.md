@@ -1,70 +1,139 @@
-# Getting Started with Create React App
+# Info General
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Esto es el proyecto `Prueba React` que hice para el equipo de React. Este proyecto se ha desarrollado con JavaScript, framework React, middleware Saga. Para el diseño se han usado las tecnologías SASS, SCSS, Styled-Components.
 
-## Available Scripts
+## Instalación
 
-In the project directory, you can run:
+Para instalar este proyecto es necesario descargar el entorno de tiempo de ejecución de JavaScript [Node.js](https://nodejs.org/es/download/).
 
-### `npm start`
+1. Lo primero que se necesita hacer es descargar este repositorio en la máquina local.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+git clone https://github.com/CloudNine13/prueba-react.git
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. Entrar en la carpeta donde se encuentra el proyecto recién descargado.
 
-### `npm test`
+```bash
+cd *path/to/repositorio/local*
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Comprobar el archivo `package.json` para asegurarse de que los scripts están bien puestos.
 
-### `npm run build`
+```json
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Borrar todas las carpetas de `node_module` y los acrhivos `.lock` tipo `package-lock.json`
+5. Instalar las dependencias de npm
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+6. Ejecutar npm
 
-### `npm run eject`
+```
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Uso
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para lanzar el servidor y poner la aplicación de React en marcha se usa el script
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Para ejecutar los test del proyecto se usa el script
 
-## Learn More
+```
+npm test
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tecnologías
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Tecnologías usadas en este proyecto son:
 
-### Code Splitting
+- react: 18.2.0
+- redux: 4.2.0
+- @reduxjs/toolkit: 1.8.3
+- redux-saga: 1.1.
+- react-router-dom: 6.3.0
+- prop-types: 15.8.1
+- history: 5.3.0
+- sass: 1.53.0
+- styled-components: 5.3.5
+- @testing-library/react: 13.3.0
+- @testing-library/jest-dom: 5.16.4
+- eslint: 8.19.0
+- prettier: 2.7.1
+- redux-mock-store: 1.5.4
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Explicación breve
 
-### Analyzing the Bundle Size
+El proyecto se empieza con el componente `Login` (salvo el componente `Router`). Dentro del Login se encuentra la forma para authentificarse. La API permite cualquier contraseña. Para evitar posibles problemas de null/undefined no es posible pasar la contraseña vacía. Al hacerlo aparece error. Si proponer a la API el correo que no es de un usuario de la API aparece el error. En la página de login se puede pasar a la página de error 404 y probar cambiar el background de la página (gracias a los `Styled-Components`). Después de loguearse con el correo correcto (por ejemplo eve.holt@reqres.in) la app abre la pantalla de `Home`. En esta página se encuentra la listá de usuarios, la paginación simple y el botón para hacer logout. Al pulsar cualquier usuario se abre la pantalla de detalles de usuario, donde se encuentra la tarjeta con su información (el componente `Detail`). Al pulsar el botón `Back` la app se vuelve a la lista. Al pulsar el botón `Delete` la API devuelve el código 204,la app se vuelve a la página anterior y se borra el item del usuario (hasta pasar a otra página). Al pulsar el botón `Edit` se abre el componente `DetailForm` que contiene la forma para mandar cambios a la API. Al editar los datos y pulsar `submit` la app se guarda la tarjeta con cambios recién hechos hasta salir del Detail.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Info Adicional
 
-### Making a Progressive Web App
+`N.B.!` No se ha espicificado el lenguaje para usar por esto he elegido al azár JavaScript. Si se necesita reescribir el proyecto en TypeScript no habrá ningún problema para hacerlo.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 1. Uso de React
 
-### Advanced Configuration
+- En la aplicación se utilizó la utilidad create-react-app.
+- Se implementó la programación funcional (hooks).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 2. Uso de Redux
 
-### Deployment
+- Se utilizó la tecnología Redux con su middleware Saga.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 3. Navegacion
 
-### `npm run build` fails to minify
+Navegación entre componentes se realiza por react-router v6.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. Maquetación
+
+- Se han implementado preprocesador de estilos `SASS, SCSS`
+- Se han utilizado los `Styled-Components`, a través de estos se puede cambiar el fondo del componente Login.
+- Se ha utilizado el brakepoint para IPads y tablets (min-width: 480px, max-width: 768px):
+  https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwihos3YwPD4AhWM_IUKHfojBzMQFnoECBMQAw&url=https%3A%2F%2Fwww.lambdatest.com%2Fblog%2Fhow-to-use-css-breakpoints-for-responsive-design%2F%23%3A~%3Atext%3DWhat%2520are%2520common%2520breakpoints%253F%2Cextra%2520large%2520screens%2520like%2520TV.&usg=AOvVaw1qBDBkjLTQS0nIaszxn0uk
+
+### 5. Formato de código
+
+- Se ha implementado ESLinter (para los tests también).
+- Se ha implementado Prettier.
+- El pre-commit hook implementado en este proyecto se encuentra en la carpeta .git (para ejecutarlo antes de commit, esta carpeta no se comparte en GitHub) y en la carpeta examples (que se comparte en GitHub).
+
+### 6. Asincronia (CRUD)
+
+- Cada petición a la API es asíncrona. Cada dispatch de la petición a la API es asíncrono (gracias al uso de Saga).
+- Las partes de código que pueden causar errores tienen bloques try-catch. Si no lo tienen se usan peticiones FAILURE en funciones generadoras que meten errores en la pantalla.
+
+### 7. Documentacion
+
+A parte de este archivo el código está documentado.
+
+## Requisitos opcionales
+
+- Se ha desarrollado la paginación simple de usuarios en el proyecto.
+- Se han implementado los tests usando librerías React-Testing-Library y Jest
+
+## Más Info Adicional
+
+### Componentes
+
+Los componentes están en `src/components/`. Cada component de este proyecto tiene su propia carpeta. Por dentro de esta carpeta se encuentran un archivo de diseño `.sass, .scss, .styled.js`, un archivo JavaScript y un archivo de tests. Algunos components son childs de otros componentes:
+
+```
+parent -> child
+detail -> detailform
+home -> item
+```
+
+Get y delete tienen el mismo `reducer` por necesitar cambiar el mismo `state` para borrar los elementos de la lista de usuarios.
+El componente login aparece en cada archivo donde se usa la asincronía.

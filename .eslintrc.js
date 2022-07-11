@@ -1,10 +1,17 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
+    jest: true
   },
   // Using airbnb js standards
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'prettier',
+    'plugin:jest-dom/recommended',
+    'plugin:testing-library/react'
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
@@ -12,7 +19,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'prettier', 'jest-dom', 'testing-library'],
   rules: {
     // Adding prettier to eslint to evade usage problems
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
