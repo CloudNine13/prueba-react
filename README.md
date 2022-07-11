@@ -164,4 +164,4 @@ El componente login aparece en cada archivo donde se usa la asincronía.
 ![DELETE API 204 response](./examples/delete204.png)
 ### PUT API Update user
 Key `updated_at` que devuelve la API significa que la petición ha sido exitosa
-![PUT API Update user](./examples/delete204.png)
+![PUT API Update user](./examples/putupdateuser.png)
